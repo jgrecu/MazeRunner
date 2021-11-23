@@ -1,17 +1,6 @@
 type: edu
 custom_name: stage2
 files:
-- name: src/maze/Main.java
-  visible: true
-  text: |
-    package maze;
-
-    public class Main {
-        public static void main(String[] args) {
-            System.out.println("Hello World!");
-        }
-    }
-  learner_created: false
 - name: test/MazeRunnerTest.java
   visible: false
   text: |
@@ -537,6 +526,20 @@ files:
         }
     }
   learner_created: false
+- name: src/maze/Main.java
+  visible: true
+  text: |
+    package maze;
+
+    public class Main {
+        public static void main(String[] args) {
+            System.out.println("Hello World!");
+        }
+    }
+  learner_created: false
+- name: src/maze/Test.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/47/stages/252/implement#comment
 status: Unchecked
 record: -1
