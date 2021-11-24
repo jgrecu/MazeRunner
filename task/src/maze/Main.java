@@ -8,9 +8,9 @@ import java.util.Scanner;
  * Rules:
  * 1. There should be walls around the maze, except for two cells: entrance and exit.
  * 2. Any empty cell must be accessible from the entrance or exit of the maze. It is not possible to walk along the
- *    maze diagonally, only vertically and horizontally.
+ * maze diagonally, only vertically and horizontally.
  * 3. There's got to be a path from the entrance to the exit. It doesn't matter what is considered an entrance and
- *    what is an exit as they are interchangeable.
+ * what is an exit as they are interchangeable.
  * 4. The maze should not contain 3x3 blocks consisting of walls only. Try to fill the entire maze area with pathways.
  */
 public class Main {
@@ -46,13 +46,9 @@ public class Main {
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};*/
         Random rand = new Random();
 
-        for (int i = 0; i < array.length; i++) {
+        for (int i = 1; i < array.length - 1; i++) {
             for (int j = 0; j < array[0].length; j++) {
-                if (i == 0 || i == array.length - 1) {
-                    array[i][j] = 1;
-                } else {
-                    array[i][j] = rand.nextInt(2);
-                }
+                array[i][j] = rand.nextInt(2);
             }
         }
         return array;
@@ -61,10 +57,10 @@ public class Main {
     private static void printMaze(int[][] maze) {
         for (int[] row : maze) {
             for (int cell : row) {
-                System.out.print(cell == 1 ? "\u2588\u2588":"  ");
+                System.out.print(cell == 1 ? "\u2588\u2588" : "  ");
             }
             System.out.println();
         }
     }
-    
+
 }
