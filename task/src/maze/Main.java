@@ -1,7 +1,5 @@
 package maze;
 
-import java.util.Arrays;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -19,48 +17,11 @@ public class Main {
 
         System.out.println("Please, enter the size of a maze");
         String[] input = scanner.nextLine().strip().split("\\s+");
-        int rows = Integer.parseInt(input[0]);
-        int columns = Integer.parseInt(input[1]);
+        int height = Integer.parseInt(input[0]);
+        int width = Integer.parseInt(input[1]);
 
-        int[][] maze = createMaze(rows, columns);
-
-        printMaze(maze);
-    }
-
-    private static int[][] createMaze(int rows, int columns) {
-        int[][] array = new int[rows][columns];
-        for (int[] row : array) {
-            Arrays.fill(row, 1);
-        }
-
-        /*array = new int[][]{
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                {0, 0, 1, 0, 1, 0, 1, 0, 0, 1},
-                {1, 0, 1, 0, 0, 0, 1, 0, 1, 1},
-                {1, 0, 0, 0, 1, 1, 1, 0, 0, 0},
-                {1, 0, 1, 1, 0, 1, 1, 0, 1, 1},
-                {1, 0, 0, 0, 0, 0, 1, 0, 1, 1},
-                {1, 0, 1, 0, 1, 0, 0, 0, 1, 1},
-                {1, 0, 1, 0, 1, 1, 1, 0, 1, 1},
-                {1, 0, 1, 0, 0, 0, 1, 0, 0, 1},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};*/
-        Random rand = new Random();
-
-        for (int i = 1; i < array.length - 1; i++) {
-            for (int j = 0; j < array[0].length; j++) {
-                array[i][j] = rand.nextInt(2);
-            }
-        }
-        return array;
-    }
-
-    private static void printMaze(int[][] maze) {
-        for (int[] row : maze) {
-            for (int cell : row) {
-                System.out.print(cell == 1 ? "\u2588\u2588" : "  ");
-            }
-            System.out.println();
-        }
+        Maze maze = new Maze(height, width);
+        maze.printMaze();
     }
 
 }

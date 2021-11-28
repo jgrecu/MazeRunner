@@ -537,6 +537,9 @@ files:
         }
     }
   learner_created: false
-feedback_link: https://hyperskill.org/projects/47/stages/252/implement#comment
+- name: src/maze/Maze.java
+  visible: true
+  learner_created: true
+feedback_link: https://hyperskill.org/learn/step/5394#comment
 status: Unchecked
 record: -1
