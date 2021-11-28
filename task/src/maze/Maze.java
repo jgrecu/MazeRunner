@@ -103,7 +103,8 @@ public class Maze {
         int mazeCol = 1;
 
         while (currentEdge < heightEdges * widthEdges) {
-            if (currentEdge + 1 < (currentEdge / widthEdges + 1) * widthEdges && minSpanningTree[currentEdge][currentEdge + 1] == 1) {
+            if (currentEdge + 1 < (currentEdge / widthEdges + 1) * widthEdges
+                    && minSpanningTree[currentEdge][currentEdge + 1] == 1) {
                 maze[mazeRow][mazeCol] = 0;
                 maze[mazeRow][mazeCol + 1] = 0;
                 maze[mazeRow][mazeCol + 2] = 0;
