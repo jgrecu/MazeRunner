@@ -12,16 +12,89 @@ import java.util.Scanner;
  * 4. The maze should not contain 3x3 blocks consisting of walls only. Try to fill the entire maze area with pathways.
  */
 public class Main {
+        private static final Scanner scanner = new Scanner(System.in);
+        private static Maze maze;
+        private static String fileName;
+        private static boolean hasMaze = false;
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        boolean isGameOver = false;
 
-        System.out.println("Please, enter the size of a maze");
-        String[] input = scanner.nextLine().strip().split("\\s+");
-        int height = Integer.parseInt(input[0]);
-        int width = Integer.parseInt(input[1]);
+        while (!isGameOver) {
+            printMenu();
 
-        Maze maze = new Maze(height, width);
-        maze.printMaze();
+            int action = Integer.parseInt(scanner.nextLine());
+            switch (action) {
+                case 1:
+                    System.out.println("Please, enter the size of a maze");
+                    String[] input = scanner.nextLine().strip().split("\\s+");
+                    if (input.length < 2) {
+                        int size = Integer.parseInt(input[0]);
+                        maze = new Maze(size);
+                    } else {
+                        int height = Integer.parseInt(input[0]);
+                        int width = Integer.parseInt(input[1]);
+                        maze = new Maze(height, width);
+                    }
+
+                    hasMaze = true;
+                    maze.printMaze();
+                    break;
+                case 2:
+                    System.out.println("Enter the file name:");
+                    fileName = scanner.nextLine();
+
+                    try {
+                        maze = (Maze) Serialiser.loadMaze(fileName);
+                        hasMaze = true;
+                        //System.out.println("Maze loaded successfully!");
+                        System.out.println();
+                    } catch (Exception e) {
+                        System.out.println("Cannot load the maze. It has an invalid format");
+                    }
+                    break;
+                case 3:
+                    if (!hasMaze) {
+                        System.out.println("Incorrect option. Please try again");
+                    } else {
+                        System.out.println("Enter the file name:");
+                        fileName = scanner.nextLine();
+
+                        try {
+                            Serialiser.saveMaze(maze, fileName);
+                            //System.out.println("Maze saved successfully!");
+                            System.out.println();
+                        } catch (Exception e) {
+                            System.out.println("ERROR! Not successfull. " + e.getMessage());
+                        }
+                    }
+                    break;
+                case 4:
+                    if (hasMaze) {
+                        maze.printMaze();
+                    }
+                    break;
+                case 0:
+                    System.out.println("Bye!");
+                    isGameOver = true;
+                    break;
+                default:
+                    System.out.println("Incorrect option. Please try again");
+                    break;
+            }
+        }
+    }
+
+    private static void printMenu() {
+        System.out.println("=== Menu ===\n" +
+                "1. Generate a new maze\n" +
+                "2. Load a maze");
+
+        if (hasMaze) {
+            System.out.println("3. Save the maze\n" +
+                    "4. Display the maze");
+        }
+        System.out.println("0. Exit");
     }
 
 }

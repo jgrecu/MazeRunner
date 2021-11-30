@@ -1,10 +1,13 @@
 package maze;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
-public class Maze {
+public class Maze implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final int height;
     private final int width;
     private int heightEdges;
@@ -19,6 +22,12 @@ public class Maze {
     public Maze(int height, int width) {
         this.height = height;
         this.width = width;
+        buildMaze();
+    }
+
+    public Maze(int size) {
+        this.height = size;
+        this.width = size;
         buildMaze();
     }
 
