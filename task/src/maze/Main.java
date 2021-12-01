@@ -13,7 +13,7 @@ import java.util.Scanner;
  */
 public class Main {
         private static final Scanner scanner = new Scanner(System.in);
-        private static Maze maze;
+        private static Maze maze = null;
         private static String fileName;
         private static boolean hasMaze = false;
 
@@ -30,7 +30,7 @@ public class Main {
                     String[] input = scanner.nextLine().strip().split("\\s+");
                     if (input.length < 2) {
                         int size = Integer.parseInt(input[0]);
-                        maze = new Maze(size);
+                        maze = new Maze(size, size);
                     } else {
                         int height = Integer.parseInt(input[0]);
                         int width = Integer.parseInt(input[1]);
@@ -48,8 +48,8 @@ public class Main {
                         maze = (Maze) Serialiser.loadMaze(fileName);
                         hasMaze = true;
                         //System.out.println("Maze loaded successfully!");
-                        System.out.println();
                     } catch (Exception e) {
+                        hasMaze = false;
                         System.out.println("Cannot load the maze. It has an invalid format");
                     }
                     break;
@@ -63,15 +63,19 @@ public class Main {
                         try {
                             Serialiser.saveMaze(maze, fileName);
                             //System.out.println("Maze saved successfully!");
-                            System.out.println();
                         } catch (Exception e) {
                             System.out.println("ERROR! Not successfull. " + e.getMessage());
                         }
                     }
                     break;
                 case 4:
-                    if (hasMaze) {
+                    if (hasMaze && maze != null) {
                         maze.printMaze();
+                    }
+                    break;
+                case 5:
+                    if (hasMaze) {
+                        maze.findTheEscape();
                     }
                     break;
                 case 0:
@@ -86,13 +90,14 @@ public class Main {
     }
 
     private static void printMenu() {
-        System.out.println("=== Menu ===\n" +
+        System.out.println("\n=== Menu ===\n" +
                 "1. Generate a new maze\n" +
                 "2. Load a maze");
 
         if (hasMaze) {
             System.out.println("3. Save the maze\n" +
-                    "4. Display the maze");
+                    "4. Display the maze\n" +
+                    "5. Find the escape");
         }
         System.out.println("0. Exit");
     }
