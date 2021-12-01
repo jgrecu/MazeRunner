@@ -678,42 +678,6 @@ files:
         }
     }
   learner_created: true
-- name: src/maze/Serialiser.java
-  visible: true
-  text: |
-    package maze;
-
-    import java.io.*;
-
-    public class Serialiser {
-
-        static void saveMaze(Maze maze, String fileName) {
-            try(FileOutputStream fos = new FileOutputStream(fileName)) {
-                BufferedOutputStream bos = new BufferedOutputStream(fos);
-                ObjectOutputStream oos = new ObjectOutputStream(bos);
-                oos.writeObject(maze);
-                oos.close();
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        static Object loadMaze(String fileName) {
-            Object maze = null;
-
-            try (FileInputStream fis = new FileInputStream(fileName)) {
-                BufferedInputStream bis = new BufferedInputStream(fis);
-                ObjectInputStream ois = new ObjectInputStream(bis);
-                maze = ois.readObject();
-                ois.close();
-            } catch (IOException | ClassNotFoundException e) {
-                System.out.println(e.getMessage());
-            }
-
-            return maze;
-        }
-    }
-  learner_created: true
 - name: test_maze.txt
   visible: true
   text: "��\0\x05sr\0\tmaze.Maze\0\0\0\0\0\0\0\x01\x02\0\bI\0\x06heightI\0\vheightEdgesI\0\
@@ -1269,15 +1233,19 @@ files:
     \0\0sr\0\x10java.util.Random62�4K�\nS\x03\0\x03Z\0\x14haveNextNextGaussianD\0\x10\
     nextNextGaussianJ\0\x04seedxp\0\0\0\0\0\0\0\0\0\0\0f}+� |x"
   learner_created: false
-- name: src/maze/PrimAlgorithm.java
+- name: src/maze/Cell.java
   visible: true
   learner_created: true
-- name: src/maze/Maze2.java
+- name: src/maze/MazeSolver.java
   visible: true
   learner_created: true
-- name: src/maze/App.java
+- name: src/maze/Menu.java
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5396#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: Wed, 01 Dec 2021 19:08:21 UTC
 record: -1
