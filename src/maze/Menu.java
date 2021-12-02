@@ -9,15 +9,8 @@ public class Menu {
 
     void show() {
         while (true) {
-            System.out.println("=== Menu ===");
-            System.out.println("1. Generate a new maze");
-            System.out.println("2. Load a maze");
-            if (maze != null) {
-                System.out.println("3. Save the maze");
-                System.out.println("4. Display the maze");
-                System.out.println("5. Find the escape");
-            }
-            System.out.println("0. Exit");
+            printMenu();
+
             String choice = sc.nextLine();
 
             switch (choice) {
@@ -55,6 +48,18 @@ public class Menu {
                     incorrectOption();
             }
         }
+    }
+
+    private void printMenu() {
+        System.out.println("=== Menu ===\n" +
+                "1. Generate a new maze\n" +
+                "2. Load a maze");
+        if (maze != null) {
+            System.out.println("3. Save the maze\n" +
+                    "4. Display the maze\n" +
+                    "5. Find the escape");
+        }
+        System.out.println("0. Exit");
     }
 
     private void incorrectOption() {
